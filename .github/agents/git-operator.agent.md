@@ -24,7 +24,8 @@ Commits, pushes and PRs happen **only when the user asks**.
 
 1. Move `[Unreleased]` entries into a new `[x.y.z] - date` section in `docs/CHANGELOG.md` and add the link at the bottom.
 2. Bump `package.json` `version` to the same value.
-3. Commit (`chore(release): vx.y.z`), then tag `vx.y.z` and push the tag — only when asked.
+3. Commit (`chore(release): vx.y.z`) and tag `vx.y.z`.
+4. When the user asks to push the release, push **both the release branch and the tag** (e.g. `git push origin <branch> vx.y.z` or `git push --follow-tags`). Pushing only the tag leaves the remote branch without the release commit, so later work would miss the version and changelog updates. Never push unless asked.
 
 ## Before opening a PR
 

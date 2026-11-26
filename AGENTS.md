@@ -19,6 +19,7 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 - **Design first.** Discuss and agree on a design before building. Do not create features, files or projects the user has not asked for.
 - Before multi-file changes, give a short step-by-step overview. When asked to fix code, explain the problem first. When asked for tests, say what will be tested first.
 - Do not commit, push or open PRs unless asked.
+- **Changelog upkeep:** whenever you create, update or delete files in a way that matters (features, fixes, config, dependencies, docs, agent rules), add an entry to `docs/CHANGELOG.md` in the same change; skip trivial edits (typos, formatting only). Sub-headings must be unique per version: `### Added in 0.0.2`, never a bare `### Added`; use `### Added in Unreleased` for unreleased work.
 - **Versioning:** whenever a version is added to `docs/CHANGELOG.md`, update `version` in `package.json` to the same value, and add the matching compare/release link at the bottom of the changelog.
 
 ## Stack
