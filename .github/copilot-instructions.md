@@ -18,7 +18,7 @@ The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it 
 - Check auth **and ownership** in every Server Action / Route Handler.
 - Tailwind only; shadcn/ui components live in `components/ui/` (generated, do not add custom ones there).
 - Tests with every change (Vitest, ≥ 80% coverage). Query by role/label.
-- Conventional Commits; never bypass Husky hooks; never commit `.env*`.
+- Conventional Commits; never bypass Husky hooks; never commit secret-bearing `.env*` files (`.env.example` with placeholders is committed).
 - When the version in `docs/CHANGELOG.md` changes, update `package.json` `version` too.
 - Design first: do not create unrequested features or files.
 

@@ -29,7 +29,7 @@ applyTo: '**'
 ### Secrets and configuration
 
 - No secrets in code, logs or the client bundle. Only `NEXT_PUBLIC_*` variables are browser-visible; never prefix a secret with it.
-- `.env*` is git-ignored; `.env.example` documents each variable with a placeholder.
+- Real env files (`.env*`) are git-ignored, except `.env.example`, which is committed and documents each variable with a placeholder only.
 
 ### Outbound requests
 

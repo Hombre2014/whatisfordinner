@@ -14,7 +14,7 @@ Commits, pushes and PRs happen **only when the user asks**.
 - Lower-case subject, no trailing period, header ≤ 100 characters; optional scope, e.g. `feat(pantry): add expiry dates`.
 - Atomic commits: one concern per commit. Do not mix formatting with logic.
 - `pre-commit` runs lint-staged. **Never use `--no-verify`**; fix the underlying problem.
-- Never stage `.env*` or secrets.
+- Never stage `.env*` files that can hold secrets (`.env`, `.env.local`, `.env.production`, ...) or any secret. **Exception:** `.env.example` (placeholder values only) must be staged whenever a change adds or alters an environment variable.
 
 ## Branches
 

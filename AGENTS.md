@@ -33,7 +33,7 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 | Lint / format      | ESLint (`eslint-config-next`), Prettier                                   | installed |
 | UI library         | shadcn/ui (+ blocks borrowed from third-party shadcn libraries if needed) | planned   |
 | Auth               | Clerk (email/password, magic link or code, social)                        | planned   |
-| Database           | Postgres on Neon; ORM (Drizzle or Prisma) **not decided yet**             | planned   |
+| Database           | Postgres on Neon + Drizzle ORM (WebSocket `Pool` driver for transactions) | planned   |
 | i18n               | `next-intl`, locales `en-US` and `bg`                                     | planned   |
 | Images             | Cloudinary free plan                                                      | planned   |
 | Recipe translation | Machine translation (Azure Translator first), cached in DB                | planned   |
@@ -114,7 +114,7 @@ docs/                # project documentation
 - Conventional Commits, enforced by commitlint on `commit-msg`: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`, `build`, `revert`. Lower-case subject, no trailing period, header ≤ 100 characters.
 - Atomic commits, one concern each. Branch names are descriptive kebab-case (e.g. `setup-and-documentation`).
 - `pre-commit` runs lint-staged (ESLint + Prettier on staged files). Never bypass hooks with `--no-verify`; fix the cause.
-- Never commit `.env*` files or secrets. Commit `.env.example` with placeholder values.
+- Never commit secret-bearing env files (`.env`, `.env.local`, `.env.production`, ...) or secrets. **Do** commit `.env.example` (placeholder values only) whenever you add an environment variable.
 
 ## Security red lines
 

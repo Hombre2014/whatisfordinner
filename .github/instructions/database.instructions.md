@@ -4,7 +4,15 @@ applyTo: 'lib/db/**,drizzle/**,prisma/**,**/*schema*.ts'
 
 # Database Instructions
 
-> **Status:** Postgres on Neon is chosen. The ORM (Drizzle or Prisma) is **not decided yet** — until `package.json` contains one, do not write ORM code. Update this file when it is chosen.
+> **Status:** Decided — **Postgres on Neon with Drizzle ORM** (`drizzle-orm` + `drizzle-kit`). Neither is installed yet: until `package.json` contains them, do not write ORM code. Read the current Drizzle and Neon docs before wiring the connection.
+
+## Connection and tooling
+
+- Use Neon's **WebSocket `Pool` driver** (`@neondatabase/serverless`) so interactive transactions work. The Neon **HTTP driver does not support interactive transactions**; use it only for single-statement reads where that is acceptable.
+- Use Neon's pooled connection string in `DATABASE_URL` (server only); put a direct, non-pooled URL in a separate variable for migrations if Neon's docs require it.
+- Define tables in TypeScript (`lib/db/schema.ts`); type the recipe column with `schema-dts` via `.$type<Recipe>()`; derive Zod schemas with `drizzle-zod` where useful.
+- Generate migrations with `drizzle-kit generate` and commit them. Inspect data with `drizzle-kit studio` (Drizzle Studio) in development.
+- Neon branches can be used to test migrations without touching real data.
 
 ## Design decisions (from the project plan)
 
