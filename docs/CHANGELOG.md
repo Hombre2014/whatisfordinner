@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changelog sub-headings are unique across the document (`Added in 0.0.2`, `Fixed in 0.0.3`, ...).
 - Release procedure in the git-operator agent now pushes the release branch together with the tag.
 - Agents must update this changelog whenever a change that matters is made.
+- Route and security rules now exempt webhook handlers from user-session authentication and require signature verification before processing.
 
 ## [0.0.1] - 2026-11-26
 

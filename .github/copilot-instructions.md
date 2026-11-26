@@ -15,7 +15,7 @@ The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it 
 - Next.js 16 differs from older versions: read `node_modules/next/dist/docs/` before writing Next.js code. `params`/`searchParams` are Promises; `middleware` is now `proxy.ts`.
 - Server Components by default; `'use client'` only when needed. External API calls and secrets stay on the server.
 - No `any`. Validate all external input with Zod.
-- Check auth **and ownership** in every Server Action / Route Handler.
+- Check auth **and ownership** in every user-facing Server Action / Route Handler. Webhooks have no session: verify the signature before processing.
 - Tailwind only; shadcn/ui components live in `components/ui/` (generated, do not add custom ones there).
 - Tests with every change (Vitest, ≥ 80% coverage). Query by role/label.
 - Conventional Commits; never bypass Husky hooks; never commit secret-bearing `.env*` files (`.env.example` with placeholders is committed).

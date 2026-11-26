@@ -121,7 +121,7 @@ docs/                # project documentation
 
 **Never:** commit secrets; trust client input without Zod validation; use `dangerouslySetInnerHTML` without sanitising (imported recipe HTML is untrusted); expose server env vars to the client (only `NEXT_PUBLIC_*` is public); log tokens, passwords or personal data; fetch arbitrary user-supplied URLs without SSRF protection (block private/loopback IPs, limit size and time, only http/https).
 
-**Always:** check authentication **and ownership** in every Server Action and Route Handler (a user may only read/write their own recipes, kitchen and pantry, plus items shared with them); scope every DB query by the current user; respect API rate limits and terms (Spoonacular, Edamam); run `pnpm audit` before releases.
+**Always:** check authentication **and ownership** in every user-facing Server Action and Route Handler (a user may only read/write their own recipes, kitchen and pantry, plus items shared with them); webhook handlers have no user session, so verify the provider's signature before processing instead; scope every DB query by the current user; respect API rate limits and terms (Spoonacular, Edamam); run `pnpm audit` before releases.
 
 More: [.github/instructions/security.instructions.md](.github/instructions/security.instructions.md).
 

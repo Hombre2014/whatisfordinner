@@ -17,17 +17,28 @@ Read the relevant guide in `node_modules/next/dist/docs/01-app/` before writing 
 
 ## Server Actions and Route Handlers
 
-Every one must, in this order:
+**User-facing** Server Actions and Route Handlers must, in this order:
 
 1. **Authenticate** — get the current user; reject with 401 / redirect if missing.
 2. **Validate** input with Zod (`safeParse`); return field errors, never throw raw Zod errors to the client.
-3. **Authorise** — confirm the user owns the resource (or has been shared it) before reading/writing.
+3. **Authorize** — confirm the user owns the resource (or has been shared it) before reading/writing.
 4. Do the work; scope all DB queries by user id.
 5. Revalidate affected paths/tags; return a typed result (`{ ok: true, data } | { ok: false, error }`).
 
+### Webhook handlers (e.g. Clerk)
+
+A webhook request has no user session, so it is **exempt from user authentication**. It must instead:
+
+1. **Verify the signature first**, using the raw request body and the provider's signing secret, before parsing or acting on anything. Reject with 400/401 if verification fails.
+2. **Validate** the verified payload with Zod.
+3. Process **idempotently** (the provider may retry); scope writes to the user id named in the verified payload.
+4. Return a 2xx quickly; keep the secret in a server-only env var.
+
+Never skip signature verification, and never mount a webhook route behind the user-auth gate in `proxy.ts` (make it a public route there).
+
 ## Rules
 
-- Organise by feature: `app/[locale]/recipes/...` once i18n exists; group with route groups `(auth)`, `(app)`.
+- Organize by feature: `app/[locale]/recipes/...` once i18n exists; group with route groups `(auth)`, `(app)`.
 - Fetch data in Server Components, not in `useEffect`.
 - Third-party calls (Spoonacular, TheMealDB, Edamam, Azure Translator, recipe URL import) happen only on the server, with timeouts, response-size limits and Zod validation of the response. Cache results to respect free-tier quotas.
 - URL importer: allow only `http`/`https`, block private and loopback addresses (SSRF), cap redirects, size and time.

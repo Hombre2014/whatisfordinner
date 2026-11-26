@@ -10,7 +10,8 @@ Reviews code against [security.instructions.md](../instructions/security.instruc
 
 ## Checklist
 
-- [ ] Every Server Action / Route Handler authenticates, validates (Zod) and checks ownership.
+- [ ] Every user-facing Server Action / Route Handler authenticates, validates (Zod) and checks ownership.
+- [ ] Every webhook handler verifies the provider signature (raw body) before any processing, and is exempt from user auth.
 - [ ] No query lacks a current-user scope; no client-supplied user id is trusted.
 - [ ] Friend sharing: only accepted friends; recipients cannot modify originals.
 - [ ] URL importer: http/https only, private/loopback IPs blocked, limits on redirects, size and time.
