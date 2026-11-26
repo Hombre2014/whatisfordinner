@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-11-26
+
+### Added
+
+- Testing: Vitest, React Testing Library, jest-dom and user-event, with an 80% coverage threshold and a first smoke test.
+- Git hooks: Husky with lint-staged (ESLint + Prettier on staged files) and commitlint (Conventional Commits).
+- Prettier configuration and `format`, `format:check`, `typecheck`, `lint:fix`, `test`, `test:run` and `test:coverage` scripts.
+- Agent setup: rewritten `AGENTS.md` and a `.github/` folder with `copilot-instructions.md`, agents (frontend, backend, tests, security, documents, git-operator), scoped instructions (components, routes, database, i18n, security) and skills (testing, component-creation).
+- `docs/Roadmap.md` placeholder.
+
+### Changed
+
+- `@types/node` raised to v24 to satisfy Vitest's peer requirement.
+
 ## [0.0.1] - 2026-11-26
 
 ### Added
@@ -17,5 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `Technical_documentation.md` (placeholder)
   - `CHANGELOG.md`
 
-[Unreleased]: https://github.com/Hombre2014/whatisfordinner/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/Hombre2014/whatisfordinner/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/Hombre2014/whatisfordinner/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/Hombre2014/whatisfordinner/releases/tag/v0.0.1

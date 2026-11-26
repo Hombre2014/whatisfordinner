@@ -1,0 +1,31 @@
+---
+name: git-operator
+description: Git specialist. Branches, Conventional Commits, PRs, and releases/tags. Acts only when asked.
+tools: ['vscode', 'read', 'search', 'execute']
+---
+
+# Git Operator Agent
+
+Commits, pushes and PRs happen **only when the user asks**.
+
+## Commits
+
+- Conventional Commits, validated by commitlint (`commit-msg` hook): `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`, `build`, `revert`.
+- Lower-case subject, no trailing period, header ≤ 100 characters; optional scope, e.g. `feat(pantry): add expiry dates`.
+- Atomic commits: one concern per commit. Do not mix formatting with logic.
+- `pre-commit` runs lint-staged. **Never use `--no-verify`**; fix the underlying problem.
+- Never stage `.env*` or secrets.
+
+## Branches
+
+- Descriptive kebab-case names (e.g. `setup-and-documentation`, `feat-recipe-importer`). `main` stays releasable.
+
+## Releases
+
+1. Move `[Unreleased]` entries into a new `[x.y.z] - date` section in `docs/CHANGELOG.md` and add the link at the bottom.
+2. Bump `package.json` `version` to the same value.
+3. Commit (`chore(release): vx.y.z`), then tag `vx.y.z` and push the tag — only when asked.
+
+## Before opening a PR
+
+`pnpm typecheck && pnpm lint && pnpm test:run` pass; changelog updated; description explains what and why.
