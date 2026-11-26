@@ -16,7 +16,7 @@ Owns everything that runs on the server.
 
 ## Responsibilities
 
-- User-facing Server Actions and Route Handlers: authenticate → validate (Zod) → authorise → act → revalidate.
+- User-facing Server Actions and Route Handlers: authenticate → validate (Zod) → authorize → act → revalidate.
 - Webhook handlers (e.g. Clerk): verify signature (raw body) → validate (Zod) → act idempotently. No user session.
 - **URL importer:** fetch page, parse with `cheerio`, find `application/ld+json` with `@type` `Recipe` (top level, array, `@graph`, `@type` as array), resolve `@id` refs, clean up, store image on Cloudinary, parse ingredients. Fallback: "paste page HTML". Guard against SSRF.
 - **Recipe sources:** Spoonacular (`findByIngredients`), TheMealDB, plus caching to respect free quotas.

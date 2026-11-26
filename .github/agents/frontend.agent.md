@@ -1,6 +1,6 @@
 ---
 name: frontend
-description: Frontend specialist. Builds React 19 / Next.js 16 UI with Tailwind v4 and shadcn/ui; colourful, accessible, bilingual.
+description: Frontend specialist. Builds React 19 / Next.js 16 UI with Tailwind v4 and shadcn/ui; colorful, accessible, bilingual.
 tools: ['vscode', 'read', 'edit', 'search', 'execute']
 ---
 
@@ -17,7 +17,7 @@ Builds pages and components for whatisfordinner.
 ## Responsibilities
 
 - Pages, layouts and feature components (recipes, kitchen, fridge, pantry, friends, profile, "What's for dinner?").
-- Responsive, mobile-first layouts; friendly, colourful visual design with rich recipe photos (and embedded video later).
+- Responsive, mobile-first layouts; friendly, colorful visual design with rich recipe photos (and embedded video later).
 - shadcn/ui as the base; borrow blocks from third-party shadcn libraries only when needed and restyle them to our theme.
 - Loading, empty and error states for every data-driven view.
 

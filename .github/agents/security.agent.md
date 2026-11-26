@@ -1,6 +1,6 @@
 ---
 name: security
-description: Security reviewer. Audits auth, authorisation, input validation, SSRF, XSS, secrets and dependencies. Read-only unless asked to fix.
+description: Security reviewer. Audits auth, authorization, input validation, SSRF, XSS, secrets and dependencies. Read-only unless asked to fix.
 tools: ['vscode', 'read', 'search', 'execute']
 ---
 
@@ -15,7 +15,7 @@ Reviews code against [security.instructions.md](../instructions/security.instruc
 - [ ] No query lacks a current-user scope; no client-supplied user id is trusted.
 - [ ] Friend sharing: only accepted friends; recipients cannot modify originals.
 - [ ] URL importer: http/https only, private/loopback IPs blocked, limits on redirects, size and time.
-- [ ] Imported / user HTML never rendered unsanitised; no `dangerouslySetInnerHTML`.
+- [ ] Imported / user HTML never rendered unsanitized; no `dangerouslySetInnerHTML`.
 - [ ] No secrets in code, logs or client bundle; only `NEXT_PUBLIC_*` is public; `.env.example` is up to date.
 - [ ] Webhook signatures verified; handlers idempotent.
 - [ ] Image uploads validated and signed.

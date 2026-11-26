@@ -4,7 +4,7 @@ applyTo: '**'
 
 # whatisfordinner — Copilot Instructions
 
-The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it first; this file only summarises the essentials.
+The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it first; this file only summarizes the essentials.
 
 **Project:** personal recipe app (recipe library, kitchen/fridge/pantry, "What can I have for dinner?"), English (US) + Bulgarian. Free services only.
 
@@ -20,6 +20,7 @@ The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it 
 - Tests with every change (Vitest, ≥ 80% coverage). Query by role/label.
 - Conventional Commits; never bypass Husky hooks; never commit secret-bearing `.env*` files (`.env.example` with placeholders is committed).
 - When the version in `docs/CHANGELOG.md` changes, update `package.json` `version` too.
+- American English (en-US) spelling everywhere: `color`, `organize`, `authorize`.
 - Design first: do not create unrequested features or files.
 
 ## More detail

@@ -25,7 +25,7 @@ Add a new feature folder when introducing a distinct feature area.
 - Type props with an interface or type; no `any`.
 - Tailwind only. Merge classes with `cn()` from `@/lib/utils` (created with shadcn/ui). Use CVA (`*Variants`) when a component has more than one visual variant.
 - Do not edit generated shadcn/ui files in `components/ui/`; compose them. Blocks borrowed from third-party shadcn libraries go in a feature folder, restyled to our theme and with their strings moved to i18n.
-- Accessibility: semantic elements, labelled controls, visible focus, keyboard operable, meaningful `alt` text for recipe photos.
+- Accessibility: semantic elements, labeled controls, visible focus, keyboard operable, meaningful `alt` text for recipe photos.
 - No hardcoded user-facing strings once `next-intl` is installed.
 - Use `next/image` for images (Cloudinary host must be allowed in `next.config.ts`).
 

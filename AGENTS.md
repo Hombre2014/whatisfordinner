@@ -80,6 +80,7 @@ docs/                # project documentation
 | Types / interfaces / enums | PascalCase                 | `RecipeSummary`             |
 | Env vars                   | document in `.env.example` | `CLERK_SECRET_KEY`          |
 
+- **Language: American English (en-US) everywhere** — code, comments, docs, commit messages, UI source strings. Write `color`, `organize`, `authorize`, `behavior`, `canceled`, not the British spellings.
 - Named exports for components, hooks and utilities. Default exports only where Next requires them (`page`, `layout`, `route`, ...).
 - Tailwind only (no CSS modules, inline styles or styled-components). Use `cn()` for conditional classes and CVA for component variants.
 - Only export what other files use. Do not add to the global namespace.
@@ -119,7 +120,7 @@ docs/                # project documentation
 
 ## Security red lines
 
-**Never:** commit secrets; trust client input without Zod validation; use `dangerouslySetInnerHTML` without sanitising (imported recipe HTML is untrusted); expose server env vars to the client (only `NEXT_PUBLIC_*` is public); log tokens, passwords or personal data; fetch arbitrary user-supplied URLs without SSRF protection (block private/loopback IPs, limit size and time, only http/https).
+**Never:** commit secrets; trust client input without Zod validation; use `dangerouslySetInnerHTML` without sanitizing (imported recipe HTML is untrusted); expose server env vars to the client (only `NEXT_PUBLIC_*` is public); log tokens, passwords or personal data; fetch arbitrary user-supplied URLs without SSRF protection (block private/loopback IPs, limit size and time, only http/https).
 
 **Always:** check authentication **and ownership** in every user-facing Server Action and Route Handler (a user may only read/write their own recipes, kitchen and pantry, plus items shared with them); webhook handlers have no user session, so verify the provider's signature before processing instead; scope every DB query by the current user; respect API rate limits and terms (Spoonacular, Edamam); run `pnpm audit` before releases.
 

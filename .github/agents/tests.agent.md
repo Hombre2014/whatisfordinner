@@ -22,7 +22,7 @@ Specialist for **Vitest** + React Testing Library in this Next.js app. Patterns 
 3. Forms: validation messages, submit, disabled state.
 4. Server logic: auth required, ownership enforced, invalid input rejected, happy path.
 5. Importer / parsers: real-world JSON-LD shapes (`@graph`, arrays, `@type` arrays), malformed input.
-6. Matching logic: ingredient normalisation, plurals, synonyms, equipment and time filters.
+6. Matching logic: ingredient normalization, plurals, synonyms, equipment and time filters.
 
 ## Rules
 

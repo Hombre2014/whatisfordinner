@@ -12,18 +12,18 @@ applyTo: '**'
 
 ## Rules
 
-### Authentication and authorisation
+### Authentication and authorization
 
 - Auth is provided by Clerk (when installed). Never roll your own password or session handling.
 - Check auth in `proxy.ts` for page gating **and again** inside every user-facing Server Action / Route Handler — never rely on the proxy alone. Webhook handlers are the exception: they have no user session and are authenticated by **signature verification** instead.
-- Authorisation = ownership check on every read/write. Scope DB queries with the current user id; never accept a user id from the client.
+- Authorization = ownership check on every read/write. Scope DB queries with the current user id; never accept a user id from the client.
 - Friend sharing: only accepted friends may receive shares; recipients get read access to the snapshot, edits operate on their own copy.
 
 ### Input and output
 
 - Validate everything with Zod at the boundary (forms, actions, route handlers, third-party responses, JSON-LD).
-- Parameterised queries only (via the ORM); no string-built SQL.
-- Never use `dangerouslySetInnerHTML` with imported or user content. If rich text is unavoidable, sanitise with DOMPurify first.
+- Parameterized queries only (via the ORM); no string-built SQL.
+- Never use `dangerouslySetInnerHTML` with imported or user content. If rich text is unavoidable, sanitize with DOMPurify first.
 - Validate uploaded images (type, size) and upload through signed Cloudinary uploads.
 
 ### Secrets and configuration
