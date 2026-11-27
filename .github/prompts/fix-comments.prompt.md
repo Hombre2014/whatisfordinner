@@ -38,7 +38,7 @@ Fetch the CodeRabbit review comments of a pull request, decide which ones are wo
 
    Run `pnpm build` too when the fix touches routes, layouts, config or fonts. Never start the dev server or any other server; if a visual check is needed, ask the user to do it.
 
-6. If no files changed (every comment was answered or declined), skip this step and go straight to Step 7. Otherwise commit and push **only if the user has asked for it in this run**; if they have not, give the user the exact `git add` and `git commit` commands and wait for the push. The message must pass commitlint (lower-case, one line, 100 characters or fewer), for example `fix: address coderabbit comments on pr #<number>`.
+6. If no files changed (every comment was answered or declined), skip this step and go straight to Step 7. Otherwise commit and push **only if the user has asked for it in this run** (in Claude Code, by adding `push` to the command, for example `/fix-comments 4 push`); if they have not, give the user the exact `git add` and `git commit` commands and wait for the push. The message must pass commitlint (lower-case, one line, 100 characters or fewer), for example `fix: address coderabbit comments on pr #<number>`.
 7. After the fixes are pushed, or straight after triage when no files changed, reply to each CodeRabbit thread with `add_reply_to_pull_request_comment`:
    - **fix:** what was changed and the commit or file, in one or two sentences.
    - **already fine / disagree:** the reason, with a reference to the code or rule.

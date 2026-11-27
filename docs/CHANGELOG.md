@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed in Unreleased
 
 - `fix-comments` prompt: allows the tests and docs a fix needs, checks that the local branch matches an explicitly given PR before editing, and defines a no-file-changes path that still replies to and resolves threads (CodeRabbit review on PR #4).
+- `/fix-comments <PR> push` in Claude Code authorizes commit and push for that run only, so one command fixes, pushes, replies and resolves. Without `push` it still stops and gives the commit commands.
 - Development plan: the M1 heading now says "done" to match its fully ticked checklist (CodeRabbit review on PR #4).
 
 ## [0.0.3] - 2026-11-27
