@@ -157,6 +157,6 @@ Before finishing a change: `pnpm typecheck && pnpm lint && pnpm test:run` must p
 - **Agents** (`.github/agents/`): `frontend`, `backend`, `tests`, `security`, `documents`, `git-operator`.
 - **Instructions** (`.github/instructions/`, scoped by file glob): components, routes, database, i18n, security.
 - **Skills** (`.github/skills/`): `component-creation`, `testing`.
-- **Prompts** (`.github/prompts/`): `fix-comments` (triage, fix, answer and resolve CodeRabbit review comments on a PR).
+- **Prompts** (`.github/prompts/`): `fix-comments` (triage, fix, answer and resolve CodeRabbit review comments on a PR). Copilot Chat runs it as `/fix-comments`; Claude Code runs it through the thin wrapper `.claude/commands/fix-comments.md` (`/fix-comments <PR>`), which points at the same file. Keep the content only in `.github/prompts/`.
 - Also surfaced to GitHub Copilot via [.github/copilot-instructions.md](.github/copilot-instructions.md).
 - Add instructions/skills for a technology (database, auth, i18n) **when that technology is installed**, not before.

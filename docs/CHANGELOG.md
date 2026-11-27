@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added in Unreleased
 
 - `.github/prompts/fix-comments.prompt.md`: a reusable prompt that fetches the CodeRabbit review comments of a pull request through the GitHub MCP server, triages and fixes them, validates with typecheck, lint and tests, then replies to and resolves each thread. It never commits, pushes or starts a server unless the user asks.
+- `.claude/commands/fix-comments.md`: a thin wrapper so Claude Code can run the same prompt as `/fix-comments <PR>`. The content stays in `.github/prompts/` so both tools share one source.
 
 ### Changed in Unreleased
 
