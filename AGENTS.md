@@ -21,6 +21,7 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 - Do not commit, push or open PRs unless asked.
 - **Changelog upkeep:** whenever you create, update or delete files in a way that matters (features, fixes, config, dependencies, docs, agent rules), add an entry to `docs/CHANGELOG.md` in the same change; skip trivial edits (typos, formatting only). Sub-headings must be unique per version: `### Added in 0.0.2`, never a bare `### Added`; use `### Added in Unreleased` for unreleased work.
 - **Docs stay in sync with the code:** everything built must be documented, and when documented behavior changes, update `docs/Technical_documentation.md` (and `docs/Development_plan.md` if scope or milestones change) in the same change. Mark items Planned, Implemented or Open accurately.
+- **Plan checkboxes:** every planned item in `docs/Development_plan.md` (v1 scope in section 2 and milestone deliverables in section 4) has a checkbox. Tick `- [x]` in the same change that implements the feature, in both places, never earlier. Add a new item as `- [ ]` when scope grows.
 - **Versioning:** whenever a version is added to `docs/CHANGELOG.md`, update `version` in `package.json` to the same value, and add the matching compare/release link at the bottom of the changelog.
 
 ## Stack

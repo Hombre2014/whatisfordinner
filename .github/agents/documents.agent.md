@@ -27,6 +27,7 @@ tools: ['vscode', 'read', 'edit', 'search']
 ## Rules
 
 - Keep documents in sync with the code; update them in the same change that alters behavior.
+- In `docs/Development_plan.md`, tick `- [x]` the scope item (section 2) and the milestone item (section 4) in the same change that implements a feature, never earlier. New planned work is added as `- [ ]`.
 - Write for a developer new to the project: state the decision **and the reason**.
 - Mark undecided items clearly as "open decision".
 - Only document what exists or has been agreed; label the rest "planned".

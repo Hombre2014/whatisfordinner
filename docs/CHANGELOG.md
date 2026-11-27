@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `AGENTS.md`, the Copilot instructions, the component rules and the component-creation skill now list shadcn/ui and `next-themes` as installed and require theme tokens instead of raw hex colors.
 - `docs/Technical_documentation.md` section 11 (UI and design system) and the development plan are updated for the implemented design.
 - The spell checker knows the word "Nunito".
+- `docs/Development_plan.md` now tracks progress with checkboxes: every scope item (section 2, tagged with its milestone) and every milestone deliverable (section 4, now a checklist per milestone) has a box that is ticked when the feature is implemented. M0 and M1 are ticked. The rule is added to `AGENTS.md` and the documents agent, and to the definition of done.
 
 ## [0.0.2] - 2026-11-26
 
