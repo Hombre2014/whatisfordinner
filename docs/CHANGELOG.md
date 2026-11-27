@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - First draft of `docs/Development_plan.md`: vision, v1 scope (accounts and profile, kitchen, recipe library, "What can I have for dinner?", languages, friends and sharing, help center), design direction, milestones M0 to M11, definition of done, risks, and open decisions.
 - First draft of `docs/Technical_documentation.md`: stack, architecture, repository layout, workflow, testing, data model (tables and relationships), authentication and authorization, key flows (URL importer, ingredient matching, "What can I have for dinner?", sharing, translation, nutrition, images), external services, i18n, security, deployment, and open decisions.
 - Database decision recorded: Postgres on Neon with Drizzle ORM (WebSocket `Pool` driver for transactions, Drizzle Studio for browsing data).
+- `.mcp.json` configures GitHub's remote MCP server for Claude Code. The token is read from the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable and is never stored in the repo; documented in section 4.5 of `docs/Technical_documentation.md`.
 
 ### Changed in 0.0.2
 

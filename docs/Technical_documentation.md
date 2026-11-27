@@ -136,6 +136,15 @@ Real env files are git-ignored. `.env.example` is committed with placeholder val
 
 Exact names are confirmed when each integration is built.
 
+### 4.5 GitHub MCP server (Implemented)
+
+[`.mcp.json`](../.mcp.json) connects Claude Code to GitHub's official remote MCP server (`https://api.githubcopilot.com/mcp/`), so the agent can work with issues, pull requests and repository data. The file holds no secret: the `Authorization` header reads the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable of the developer's machine.
+
+- This variable is a developer tool setting, not an app variable, so it is **not** in `.env.example` and the app never reads it.
+- Create a fine-grained personal access token limited to the `whatisfordinner` repository (read and write for contents, issues and pull requests; read-only for metadata), set it as a user environment variable, and restart the editor.
+- Claude Code asks for approval the first time it uses a project-scoped MCP server.
+- Never paste the token into a file, a commit, an issue or a chat.
+
 ## 5. Testing (Implemented)
 
 - Vitest with jsdom and React Testing Library; `vitest.config.mts` sets `globals: true`, resolves the `@/*` alias, and enforces **80%** thresholds for statements, branches, functions and lines.
