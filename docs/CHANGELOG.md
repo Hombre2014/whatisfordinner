@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Agent setup: rewritten `AGENTS.md` and a `.github/` folder with `copilot-instructions.md`, agents (frontend, backend, tests, security, documents, git-operator), scoped instructions (components, routes, database, i18n, security) and skills (testing, component-creation).
 - `docs/Roadmap.md` placeholder.
 - First draft of `docs/Development_plan.md`: vision, v1 scope (accounts and profile, kitchen, recipe library, "What can I have for dinner?", languages, friends and sharing, help center), design direction, milestones M0 to M11, definition of done, risks, and open decisions.
+- First draft of `docs/Technical_documentation.md`: stack, architecture, repository layout, workflow, testing, data model (tables and relationships), authentication and authorization, key flows (URL importer, ingredient matching, "What can I have for dinner?", sharing, translation, nutrition, images), external services, i18n, security, deployment, and open decisions.
 - Database decision recorded: Postgres on Neon with Drizzle ORM (WebSocket `Pool` driver for transactions, Drizzle Studio for browsing data).
 
 ### Changed in 0.0.2
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changelog sub-headings are unique across the document (`Added in 0.0.2`, `Fixed in 0.0.3`, ...).
 - Release procedure in the git-operator agent now pushes the release branch together with the tag.
 - Agents must update this changelog whenever a change that matters is made.
+- `AGENTS.md` now requires documentation to be updated in the same change whenever the app changes.
 - Authorization rules now say shared recipes are read-only: a share never authorizes a write, and edits create or modify the recipient's own copy.
 - All text now uses American English spelling (`color`, `organize`, `authorize`), and the rule is recorded in `AGENTS.md`.
 - Route and security rules now exempt webhook handlers from user-session authentication and require signature verification before processing.
