@@ -339,7 +339,7 @@ Rejected: Edamam Meal Planner (meal planning is out of scope) and Edamam Recipe 
 
 Summary of the rules in [security.instructions.md](../.github/instructions/security.instructions.md):
 
-- Authentication and ownership are checked in every user-facing handler; shared access is read-only.
+- Authentication and ownership are checked in every user-facing handler; shared access is read-only. Webhook handlers have no user session and are authenticated by signature verification instead.
 - All external input (forms, actions, third-party responses, imported JSON-LD) is validated with Zod.
 - URL importer protections: `http` and `https` only, private and loopback addresses blocked, limits on redirects, size and time.
 - No `dangerouslySetInnerHTML` with imported or user content; sanitize if rich text is ever needed.

@@ -133,7 +133,7 @@ Order can change. M10 (help) can move earlier if useful, and the profile (M6) ma
 
 - `pnpm typecheck`, `pnpm lint` and `pnpm test:run` pass; coverage stays at 80% or more.
 - Interface strings exist in both English (US) and Bulgarian.
-- Authentication and ownership are checked on every server action and route handler.
+- Authentication and ownership are checked on every **user-facing** server action and route handler. Webhook handlers (for example, Clerk) have no user session; they verify the provider's signature before processing instead.
 - New environment variables are in `.env.example`.
 - [CHANGELOG.md](CHANGELOG.md) is updated, and [Technical_documentation.md](Technical_documentation.md) is updated if behavior or architecture changed.
 - The design is responsive and accessible.
