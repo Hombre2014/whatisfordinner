@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added in Unreleased
+
+- `.github/prompts/fix-comments.prompt.md`: a reusable prompt that fetches the CodeRabbit review comments of a pull request through the GitHub MCP server, triages and fixes them, validates with typecheck, lint and tests, then replies to and resolves each thread. It never commits, pushes or starts a server unless the user asks.
+
 ## [0.0.3] - 2026-11-27
 
 ### Added in 0.0.3

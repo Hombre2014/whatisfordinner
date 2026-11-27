@@ -28,4 +28,5 @@ The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it 
 - Agents: [.github/agents/](agents/)
 - Scoped instructions: [.github/instructions/](instructions/)
 - Skills: [.github/skills/](skills/)
+- Prompts: [.github/prompts/](prompts/)
 - Docs: [docs/](../docs/)

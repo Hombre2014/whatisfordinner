@@ -85,7 +85,7 @@ messages/             en.json, bg.json (UI strings)
 drizzle/              generated migrations
 __tests__/            page and cross-cutting tests (unit tests are co-located)
 docs/                 project documentation
-.github/              agent instructions, agents, skills
+.github/              agent instructions, agents, skills, prompts
 .husky/               git hooks
 ```
 

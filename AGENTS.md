@@ -157,5 +157,6 @@ Before finishing a change: `pnpm typecheck && pnpm lint && pnpm test:run` must p
 - **Agents** (`.github/agents/`): `frontend`, `backend`, `tests`, `security`, `documents`, `git-operator`.
 - **Instructions** (`.github/instructions/`, scoped by file glob): components, routes, database, i18n, security.
 - **Skills** (`.github/skills/`): `component-creation`, `testing`.
+- **Prompts** (`.github/prompts/`): `fix-comments` (triage, fix, answer and resolve CodeRabbit review comments on a PR).
 - Also surfaced to GitHub Copilot via [.github/copilot-instructions.md](.github/copilot-instructions.md).
 - Add instructions/skills for a technology (database, auth, i18n) **when that technology is installed**, not before.
