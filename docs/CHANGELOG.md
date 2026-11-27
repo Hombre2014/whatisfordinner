@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prettier configuration and `format`, `format:check`, `typecheck`, `lint:fix`, `test`, `test:run` and `test:coverage` scripts.
 - Agent setup: rewritten `AGENTS.md` and a `.github/` folder with `copilot-instructions.md`, agents (frontend, backend, tests, security, documents, git-operator), scoped instructions (components, routes, database, i18n, security) and skills (testing, component-creation).
 - `docs/Roadmap.md` placeholder.
+- First draft of `docs/Development_plan.md`: vision, v1 scope (accounts and profile, kitchen, recipe library, "What can I have for dinner?", languages, friends and sharing, help center), design direction, milestones M0 to M11, definition of done, risks, and open decisions.
 - Database decision recorded: Postgres on Neon with Drizzle ORM (WebSocket `Pool` driver for transactions, Drizzle Studio for browsing data).
 
 ### Changed in 0.0.2
@@ -25,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changelog sub-headings are unique across the document (`Added in 0.0.2`, `Fixed in 0.0.3`, ...).
 - Release procedure in the git-operator agent now pushes the release branch together with the tag.
 - Agents must update this changelog whenever a change that matters is made.
+- Authorization rules now say shared recipes are read-only: a share never authorizes a write, and edits create or modify the recipient's own copy.
 - All text now uses American English spelling (`color`, `organize`, `authorize`), and the rule is recorded in `AGENTS.md`.
 - Route and security rules now exempt webhook handlers from user-session authentication and require signature verification before processing.
 

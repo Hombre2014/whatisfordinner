@@ -6,7 +6,7 @@ applyTo: '**'
 
 ## Threat model (private app for friends and family, internet-facing)
 
-- Authenticated users must not see or change each other's recipes, kitchen, pantry or profile — except items explicitly shared (accepted friendship + share record).
+- Authenticated users must not see or change each other's recipes, kitchen, pantry or profile. The only exception is **read-only** access to recipes explicitly shared with them (accepted friendship + share record). Shared access never allows writes; edits go to the recipient's own copy.
 - Imported recipe pages, API responses and user-entered text are **untrusted**.
 - The URL importer makes server-side requests to user-supplied URLs (SSRF risk).
 

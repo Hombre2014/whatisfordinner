@@ -21,7 +21,7 @@ Read the relevant guide in `node_modules/next/dist/docs/01-app/` before writing 
 
 1. **Authenticate** — get the current user; reject with 401 / redirect if missing.
 2. **Validate** input with Zod (`safeParse`); return field errors, never throw raw Zod errors to the client.
-3. **Authorize** — confirm the user owns the resource (or has been shared it) before reading/writing.
+3. **Authorize** — confirm the user **owns** the resource before reading or writing it. A recipe shared with the user grants **read access to the snapshot only**; it never authorizes a write to the original or to the share record. An edit of a shared recipe must create (or modify) the recipient's **own copy**, which they own.
 4. Do the work; scope all DB queries by user id.
 5. Revalidate affected paths/tags; return a typed result (`{ ok: true, data } | { ok: false, error }`).
 
