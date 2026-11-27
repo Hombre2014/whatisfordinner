@@ -22,10 +22,12 @@ Commits, pushes and PRs happen **only when the user asks**.
 
 ## Releases
 
-1. Move `[Unreleased]` entries into a new `[x.y.z] - date` section in `docs/CHANGELOG.md` and add the link at the bottom.
-2. Bump `package.json` `version` to the same value.
-3. Commit (`chore(release): vx.y.z`) and create an **annotated** tag: `git tag -a vx.y.z -m "vx.y.z"`. A plain `git tag vx.y.z` is lightweight, and `git push --follow-tags` skips lightweight tags.
-4. When the user asks to push the release, push **both the release branch and the tag explicitly**: `git push origin <branch> vx.y.z`. Do not rely on `--follow-tags`. Pushing only the tag leaves the remote branch without the release commit, so later work would miss the version and changelog updates. Never push unless asked.
+The changelog has no `Unreleased` section: the version in `docs/CHANGELOG.md` and `package.json` is set when the work on it starts, and every change is logged under it.
+
+1. When the branch is merged, remind the user that the version needs a tag. Never tag or push unasked.
+2. On the merged base branch (after `git pull`), create an **annotated** tag on the merge commit: `git tag -a vx.y.z -m "vx.y.z"`. A plain `git tag vx.y.z` is lightweight, and `git push --follow-tags` skips lightweight tags.
+3. Push the tag explicitly: `git push origin vx.y.z`. The tag makes the changelog compare links (`vPrevious...vx.y.z`) work.
+4. Then start the next version: add the next `## [x.y.z]` section to the changelog, bump `package.json` to match, and add its compare link.
 
 ## Before opening a PR
 
