@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changelog rules: there is no `Unreleased` section. Every change is logged under the version being worked on, and that version stays until its branch is merged. A merged version is closed; the next work starts the next version.
 - After a merge, the version is tagged `vx.y.z` on GitHub (annotated tag, pushed explicitly) so the changelog compare links resolve. The rule is in `AGENTS.md`, the documents agent and the release steps of the git-operator agent.
+- Release steps in the git-operator agent now tag the PR's merge commit by SHA instead of `HEAD`, so a later commit on the base branch cannot be tagged by mistake (CodeRabbit review on PR #5).
 - Git tags `v0.0.2` and `v0.0.3` created on GitHub (they were missing).
 
 ## [0.0.3] - 2026-11-27
