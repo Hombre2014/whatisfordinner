@@ -112,7 +112,7 @@ export const badgeVariants = cva(
 export type BadgeVariants = VariantProps<typeof badgeVariants>;
 ```
 
-> `cn()` (`lib/utils.ts`) and `class-variance-authority` arrive with shadcn/ui; they are not installed yet. Verify before importing.
+> `cn()` (`lib/utils.ts`, from the `cn` package) and `class-variance-authority` came with shadcn/ui and are installed. Style with theme tokens (`bg-primary`, `text-muted-foreground`, `text-highlight`), never raw hex colors.
 
 ## Rules recap
 

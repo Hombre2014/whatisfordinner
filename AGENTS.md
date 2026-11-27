@@ -1,6 +1,6 @@
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
@@ -21,6 +21,7 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 - Do not commit, push or open PRs unless asked.
 - **Changelog upkeep:** whenever you create, update or delete files in a way that matters (features, fixes, config, dependencies, docs, agent rules), add an entry to `docs/CHANGELOG.md` in the same change; skip trivial edits (typos, formatting only). Sub-headings must be unique per version: `### Added in 0.0.2`, never a bare `### Added`; use `### Added in Unreleased` for unreleased work.
 - **Docs stay in sync with the code:** everything built must be documented, and when documented behavior changes, update `docs/Technical_documentation.md` (and `docs/Development_plan.md` if scope or milestones change) in the same change. Mark items Planned, Implemented or Open accurately.
+- **Plan checkboxes:** every planned item in `docs/Development_plan.md` (v1 scope in section 2 and milestone deliverables in section 4) has a checkbox. Tick `- [x]` in the same change that implements the feature, in both places, never earlier. Add a new item as `- [ ]` when scope grows.
 - **Versioning:** whenever a version is added to `docs/CHANGELOG.md`, update `version` in `package.json` to the same value, and add the matching compare/release link at the bottom of the changelog.
 
 ## Stack
@@ -33,7 +34,8 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 | Tests              | Vitest + React Testing Library + jest-dom + user-event                    | installed |
 | Git hooks          | Husky + lint-staged + commitlint (Conventional Commits)                   | installed |
 | Lint / format      | ESLint (`eslint-config-next`), Prettier                                   | installed |
-| UI library         | shadcn/ui (+ blocks borrowed from third-party shadcn libraries if needed) | planned   |
+| UI library         | shadcn/ui (+ blocks borrowed from third-party shadcn libraries if needed) | installed |
+| Theme / fonts      | `next-themes` (dark mode); Rubik + Nunito Sans; Fresh Basil palette       | installed |
 | Auth               | Clerk (email/password, magic link or code, social)                        | planned   |
 | Database           | Postgres on Neon + Drizzle ORM (WebSocket `Pool` driver for transactions) | planned   |
 | i18n               | `next-intl`, locales `en-US` and `bg`                                     | planned   |
@@ -155,5 +157,6 @@ Before finishing a change: `pnpm typecheck && pnpm lint && pnpm test:run` must p
 - **Agents** (`.github/agents/`): `frontend`, `backend`, `tests`, `security`, `documents`, `git-operator`.
 - **Instructions** (`.github/instructions/`, scoped by file glob): components, routes, database, i18n, security.
 - **Skills** (`.github/skills/`): `component-creation`, `testing`.
+- **Prompts** (`.github/prompts/`): `fix-comments` (triage, fix, answer and resolve CodeRabbit review comments on a PR). Copilot Chat runs it as `/fix-comments`; Claude Code runs it through the thin wrapper `.claude/commands/fix-comments.md` (`/fix-comments <PR>`), which points at the same file. Adding `push` (`/fix-comments <PR> push`) authorizes commit and push for that run; without it the agent only gives you the commands. Keep the content only in `.github/prompts/`.
 - Also surfaced to GitHub Copilot via [.github/copilot-instructions.md](.github/copilot-instructions.md).
 - Add instructions/skills for a technology (database, auth, i18n) **when that technology is installed**, not before.

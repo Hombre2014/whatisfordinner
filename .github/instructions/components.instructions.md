@@ -24,6 +24,7 @@ Add a new feature folder when introducing a distinct feature area.
 - Named exports. PascalCase file and component names.
 - Type props with an interface or type; no `any`.
 - Tailwind only. Merge classes with `cn()` from `@/lib/utils` (created with shadcn/ui). Use CVA (`*Variants`) when a component has more than one visual variant.
+- Colors come from theme tokens in `app/globals.css` (`bg-primary`, `text-muted-foreground`, `text-highlight`, ...), never raw hex values, so dark mode works. Headings use `font-heading` (Rubik) and body text `font-sans` (Nunito Sans).
 - Do not edit generated shadcn/ui files in `components/ui/`; compose them. Blocks borrowed from third-party shadcn libraries go in a feature folder, restyled to our theme and with their strings moved to i18n.
 - Accessibility: semantic elements, labeled controls, visible focus, keyboard operable, meaningful `alt` text for recipe photos.
 - No hardcoded user-facing strings once `next-intl` is installed.
