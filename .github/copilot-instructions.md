@@ -8,7 +8,7 @@ The full, authoritative project rules are in [AGENTS.md](../AGENTS.md). Read it 
 
 **Project:** personal recipe app (recipe library, kitchen/fridge/pantry, "What can I have for dinner?"), English (US) + Bulgarian. Free services only.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind v4 · pnpm · Vitest + React Testing Library · shadcn/ui, Clerk, Neon Postgres, next-intl (planned, not yet installed).
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind v4 · pnpm · Vitest + React Testing Library · shadcn/ui and `next-themes` (installed); Clerk, Neon Postgres, next-intl (planned, not yet installed).
 
 ## Essentials
 

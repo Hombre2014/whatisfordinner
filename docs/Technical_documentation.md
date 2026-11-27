@@ -12,23 +12,25 @@ Free-tier limits and third-party terms change. Figures below are noted as _unver
 
 ## 1. Stack
 
-| Area            | Choice                                                            | Status      |
-| --------------- | ----------------------------------------------------------------- | ----------- |
-| Framework       | Next.js 16.4 (App Router), React 19.3, TypeScript (strict)        | Implemented |
-| Styling         | Tailwind CSS 4.3                                                  | Implemented |
-| Package manager | pnpm 12                                                           | Implemented |
-| Tests           | Vitest 5 + React Testing Library + jest-dom + user-event          | Implemented |
-| Quality gates   | ESLint, Prettier, Husky, lint-staged, commitlint                  | Implemented |
-| Code review     | CodeRabbit                                                        | In use      |
-| UI              | shadcn/ui, plus restyled blocks from third-party shadcn libraries | Planned     |
-| Auth            | Clerk                                                             | Planned     |
-| Database        | Postgres on Neon, Drizzle ORM                                     | Planned     |
-| Validation      | Zod, React Hook Form                                              | Planned     |
-| i18n            | `next-intl` (`en-US`, `bg`)                                       | Planned     |
-| Images          | Cloudinary                                                        | Planned     |
-| HTML parsing    | `cheerio`                                                         | Planned     |
-| Recipe types    | `schema-dts` (schema.org `Recipe`)                                | Planned     |
-| Hosting         | Vercel (Hobby plan), Neon, Cloudinary                             | Planned     |
+| Area            | Choice                                                         | Status      |
+| --------------- | -------------------------------------------------------------- | ----------- |
+| Framework       | Next.js 16.4 (App Router), React 19.3, TypeScript (strict)     | Implemented |
+| Styling         | Tailwind CSS 4.3                                               | Implemented |
+| Package manager | pnpm 12                                                        | Implemented |
+| Tests           | Vitest 5 + React Testing Library + jest-dom + user-event       | Implemented |
+| Quality gates   | ESLint, Prettier, Husky, lint-staged, commitlint               | Implemented |
+| Code review     | CodeRabbit                                                     | In use      |
+| UI              | shadcn/ui (Radix base), plus restyled third-party blocks later | Implemented |
+| Theme           | `next-themes` (light, dark, system), class-based               | Implemented |
+| Fonts           | Rubik (headings) + Nunito Sans (body), via `next/font/google`  | Implemented |
+| Auth            | Clerk                                                          | Planned     |
+| Database        | Postgres on Neon, Drizzle ORM                                  | Planned     |
+| Validation      | Zod, React Hook Form                                           | Planned     |
+| i18n            | `next-intl` (`en-US`, `bg`)                                    | Planned     |
+| Images          | Cloudinary                                                     | Planned     |
+| HTML parsing    | `cheerio`                                                      | Planned     |
+| Recipe types    | `schema-dts` (schema.org `Recipe`)                             | Planned     |
+| Hosting         | Vercel (Hobby plan), Neon, Cloudinary                          | Planned     |
 
 Next.js 16 differs from earlier versions (for example, `params` is a Promise and `middleware` was renamed `proxy`). Always read `node_modules/next/dist/docs/` before writing Next.js code.
 
@@ -87,7 +89,7 @@ docs/                 project documentation
 .husky/               git hooks
 ```
 
-**Implemented today:** `app/`, `__tests__/`, `docs/`, `.github/`, `.husky/` and the config files. The other folders are created as each milestone needs them.
+**Implemented today:** `app/`, `components/` (`ui/`, `layout/`, `home/`), `lib/utils.ts` (the `cn()` helper), `__tests__/`, `docs/`, `.github/`, `.husky/` and the config files (including `components.json` for shadcn/ui). The other folders are created as each milestone needs them.
 
 ## 4. Development workflow (Implemented)
 
@@ -337,11 +339,27 @@ Rejected: Edamam Meal Planner (meal planning is out of scope) and Edamam Recipe 
 - Recipe content is not part of the UI messages; see [8.5](#85-translation).
 - Details: [.github/instructions/i18n.instructions.md](../.github/instructions/i18n.instructions.md).
 
-## 11. UI and design system (Planned)
+## 11. UI and design system (Implemented in M1; help center Planned)
 
-- shadcn/ui components in `components/ui/` (generated, never hand-edited); feature components compose them. Borrowed blocks from third-party shadcn libraries are restyled to the app theme and have their strings moved to i18n.
-- Design tokens (colors, radius, fonts) are CSS variables so light and dark themes share one set of components.
-- Mobile first, WCAG 2.1 AA, rounded shapes, food photography first. Colors and moodboard are decided in milestone M1.
+- shadcn/ui (style `radix-nova`, Radix primitives, Lucide icons) is configured in `components.json`. Generated components live in `components/ui/` and are never hand-edited; feature components compose them. Installed so far: `button`, `card`, `sheet`. Borrowed blocks from third-party shadcn libraries are restyled to the app theme and have their strings moved to i18n.
+- `cn()` in `lib/utils.ts` comes from the `cn` package (published by the shadcn maintainers) instead of `clsx` + `tailwind-merge`.
+- **Palette: Fresh Basil.** All colors are CSS variables in `app/globals.css` (oklch), defined for `:root` (light) and `.dark`, and mapped to Tailwind with `@theme inline`. Use tokens such as `bg-primary`, `text-muted-foreground` and `text-highlight`; never raw hex colors in components.
+
+  | Token                 | Light     | Dark      | Use                                               |
+  | --------------------- | --------- | --------- | ------------------------------------------------- |
+  | `primary`             | `#2F7D32` | `#5FBF63` | Herb green: main buttons, active navigation, logo |
+  | `highlight`           | `#CF3F18` | `#FF7A57` | Tomato: emphasis (our own token; see below)       |
+  | `background`          | `#FBF8F1` | `#0F1A12` | Page                                              |
+  | `secondary` / `muted` | `#E4EBDD` | `#1B2B20` | Soft surfaces                                     |
+  | `foreground`          | `#1F2A1F` | `#EAF2E6` | Text                                              |
+
+  shadcn's `accent` is only the subtle hover background, so the tomato accent is a separate `highlight` / `highlight-foreground` token. Button and text pairs were checked for WCAG AA contrast (at least 4.5:1); recheck when adding a color pair.
+
+- **Fonts:** Rubik for headings (`font-heading`, applied to `h1` to `h4`) and Nunito Sans for body text (`font-sans`). Both load the `latin` and `cyrillic` subsets, which Bulgarian needs.
+- **Dark mode:** `next-themes` toggles a `dark` class on `<html>` (default: system). `ThemeToggle` renders both icons and lets CSS show one, so server and client HTML match.
+- **App shell:** `SiteHeader` (logo, main navigation, theme toggle, a slide-in `MobileNav` below `md`), `SiteFooter`, a skip-to-content link, and a single `<main id="main-content">` in the root layout. Navigation links (Home, Recipes, My Kitchen, Friends, Help) mark the current page with `aria-current`. `NavLinks` reads the path with `usePathname`, so it sits inside a `Suspense` boundary (with `cacheComponents` on, `usePathname` can suspend on routes with dynamic params).
+- **Pages:** the home page (hero with the "What can I have for dinner?" action, three feature cards) and placeholder pages for `/recipes`, `/kitchen`, `/friends`, `/help` and `/dinner` built from `ComingSoon`. Sign-in and the language switcher are added in M2.
+- Mobile first, WCAG 2.1 AA, rounded shapes (`--radius: 0.875rem`), food photography first (photos arrive with recipes in M3; gradient blocks stand in until then).
 - The help center is a content area with its own layout (sidebar, search, guides) built in milestone M10.
 - Component rules: [.github/instructions/components.instructions.md](../.github/instructions/components.instructions.md).
 
@@ -378,7 +396,7 @@ Summary of the rules in [security.instructions.md](../.github/instructions/secur
 
 | Decision                         | Options                                           | Needed by                       |
 | -------------------------------- | ------------------------------------------------- | ------------------------------- |
-| Visual identity (palette, fonts) | To be designed                                    | M1                              |
+| Visual identity (palette, fonts) | Decided: Fresh Basil, Rubik + Nunito Sans         | Done (M1)                       |
 | Ingredient parsing               | `parse-ingredient` (npm) or Spoonacular endpoint  | M4                              |
 | Nutrition source                 | Edamam or USDA FoodData Central                   | M9                              |
 | Translation provider             | Azure first; compare Bulgarian quality with DeepL | M9                              |

@@ -1,6 +1,6 @@
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
@@ -33,7 +33,8 @@ Plan and design: [docs/Development_plan.md](docs/Development_plan.md) · How it 
 | Tests              | Vitest + React Testing Library + jest-dom + user-event                    | installed |
 | Git hooks          | Husky + lint-staged + commitlint (Conventional Commits)                   | installed |
 | Lint / format      | ESLint (`eslint-config-next`), Prettier                                   | installed |
-| UI library         | shadcn/ui (+ blocks borrowed from third-party shadcn libraries if needed) | planned   |
+| UI library         | shadcn/ui (+ blocks borrowed from third-party shadcn libraries if needed) | installed |
+| Theme / fonts      | `next-themes` (dark mode); Rubik + Nunito Sans; Fresh Basil palette       | installed |
 | Auth               | Clerk (email/password, magic link or code, social)                        | planned   |
 | Database           | Postgres on Neon + Drizzle ORM (WebSocket `Pool` driver for transactions) | planned   |
 | i18n               | `next-intl`, locales `en-US` and `bg`                                     | planned   |

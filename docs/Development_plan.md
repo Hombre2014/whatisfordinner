@@ -99,14 +99,15 @@ The look should feel warm, friendly and appetizing, not like an admin dashboard.
 ### Proposed design principles (to be confirmed)
 
 - **Food photography first:** large images, image-led cards.
-- **A bold, warm color palette** with a playful secondary color, plus dark mode. Exact colors to be chosen in the design step.
+- **A bold, warm color palette:** **Fresh Basil** (herb green primary, tomato accent, cream background), plus dark mode. Decided in M1; the values are in [Technical_documentation.md](Technical_documentation.md#11-ui-and-design-system-implemented-in-m1-help-center-planned).
+- **Fonts:** Rubik for headings and Nunito Sans for body text, both with Cyrillic support for Bulgarian.
 - **Rounded shapes, generous spacing, friendly illustrations** for empty states and the help center.
 - **One primary action per screen.** The home screen leads with the "What can I have for dinner?" action.
 - **Mobile first.** The kitchen is a phone-in-hand place.
 - **Accessible:** WCAG 2.1 AA contrast, keyboard use, labels, alt text.
 - **Components:** shadcn/ui as the base, with blocks borrowed from third-party shadcn libraries where useful (restyled to our theme).
 
-A moodboard and color palette are produced in milestone M1 and approved before building screens.
+The palette and fonts were compared on a temporary preview in milestone M1 and approved before building screens.
 
 ## 4. Milestones
 
@@ -115,7 +116,7 @@ Each milestone is small enough to review and merge on its own. After a merge, th
 | #   | Milestone                                          | Main deliverables                                                                                                                                                                                                                           |
 | --- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | M0  | Setup and documentation _(current branch, v0.0.2)_ | Project skeleton, tests, Husky, agent instructions, documentation                                                                                                                                                                           |
-| M1  | Design system and app shell                        | Color palette and moodboard, shadcn/ui installed, theme and dark mode, layout (navigation, header), home page placeholder                                                                                                                   |
+| M1  | Design system and app shell                        | Color palette and fonts, shadcn/ui installed, theme and dark mode, layout (navigation, header, footer), home page and placeholder pages                                                                                                     |
 | M2  | Foundation: i18n, auth and database                | `next-intl` (English and Bulgarian), Clerk sign-up and sign-in, Neon + Drizzle connection, first migration, users table synced with Clerk, `.env.example`, Bulgarian spell-check dictionary (`@cspell/dict-bg-bg`) installed and configured |
 | M3  | Recipe library (manual)                            | Recipes and ingredients tables, manual add and edit form (schema.org `Recipe`), list and detail pages, favorites, Cloudinary image upload                                                                                                   |
 | M4  | URL importer                                       | Server-side import from JSON-LD with SSRF protection, image copy, duplicate detection, "paste page HTML" fallback, ingredient parsing                                                                                                       |
@@ -152,7 +153,6 @@ Order can change. M10 (help) can move earlier if useful, and the profile (M6) ma
 
 ## 7. Open decisions
 
-- Final color palette and visual identity (M1).
 - Translation provider: Azure Translator first; compare Bulgarian quality with DeepL on real recipes (M9).
 - Nutrition source: Edamam (needs attribution, limited free tier) or USDA FoodData Central (free, more work) (M9).
 - Ingredient parsing: an npm library or the Spoonacular endpoint (M4).
@@ -165,6 +165,7 @@ Order can change. M10 (help) can move earlier if useful, and the profile (M6) ma
 | -------------- | ------------------------------------------------- |
 | Framework      | Next.js 16, React 19, TypeScript, Tailwind CSS v4 |
 | UI library     | shadcn/ui                                         |
+| Visual design  | Fresh Basil palette, Rubik + Nunito Sans fonts    |
 | Authentication | Clerk                                             |
 | Database       | Postgres on Neon, Drizzle ORM                     |
 | Images         | Cloudinary                                        |
