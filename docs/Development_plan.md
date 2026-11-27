@@ -128,7 +128,7 @@ Each milestone is small enough to review and merge on its own. After a merge, th
 - [x] Agent instructions
 - [x] Documentation (development plan, technical documentation, changelog)
 
-### M1: Design system and app shell (in progress, v0.0.3)
+### M1: Design system and app shell (done, v0.0.3)
 
 - [x] Color palette and fonts
 - [x] shadcn/ui installed
