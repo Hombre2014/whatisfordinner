@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Agents must update this changelog whenever a change that matters is made.
 - Code Spell Checker ignores Cyrillic text for now (`cSpell.ignoreRegExpList` in `.vscode/settings.json`); the Bulgarian dictionary is scheduled for milestone M2 in the development plan.
 - `AGENTS.md` now requires documentation to be updated in the same change whenever the app changes.
+- Testing skill and tests agent now cover shared-recipe reads (allowed for accepted friends, read-only) and test webhook handlers separately from user-session handlers (signature rejection, valid-signature processing, idempotent retries).
 - Authorization rules now say shared recipes are read-only: a share never authorizes a write, and edits create or modify the recipient's own copy.
 - All text now uses American English spelling (`color`, `organize`, `authorize`), and the rule is recorded in `AGENTS.md`.
 - Route and security rules now exempt webhook handlers from user-session authentication and require signature verification before processing.

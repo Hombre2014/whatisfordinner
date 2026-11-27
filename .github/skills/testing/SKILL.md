@@ -87,7 +87,24 @@ Auth (Clerk) and `fetch` must be mocked the same way — never call the network.
 
 ## Server Actions / Route Handlers
 
-Test as plain async functions with the auth helper and DB mocked. Always cover: unauthenticated → rejected; wrong owner → rejected; invalid input → field errors; happy path.
+Test as plain async functions with the auth helper, the DB and external services mocked.
+
+**User-facing actions and handlers** — always cover:
+
+- unauthenticated → rejected;
+- invalid input → field errors;
+- owner → happy path;
+- non-owner, no share → read and write rejected;
+- **shared recipe:** a recipient with an accepted friendship and a share record **can read the snapshot** (authorized read case);
+- **shared recipe, write:** a recipient's attempt to modify the original or the share record → rejected; an edit creates or modifies the recipient's **own copy** instead;
+- share without an accepted friendship, or a pending or rejected friendship → read rejected.
+
+**Webhook handlers** (for example Clerk) have no user session, so do **not** test them for "unauthenticated → rejected". Test them separately:
+
+- missing or invalid signature → rejected, and nothing is processed;
+- valid signature on the raw body → processed;
+- invalid payload with a valid signature → rejected by Zod;
+- the same event delivered twice (a retry) → processed idempotently, with no duplicate rows or side effects.
 
 ## Limits
 

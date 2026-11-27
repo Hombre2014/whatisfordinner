@@ -20,9 +20,10 @@ Specialist for **Vitest** + React Testing Library in this Next.js app. Patterns 
 1. Components: renders, props, interactions, loading / empty / error states.
 2. Hooks: initial state, updates, error handling.
 3. Forms: validation messages, submit, disabled state.
-4. Server logic: auth required, ownership enforced, invalid input rejected, happy path.
-5. Importer / parsers: real-world JSON-LD shapes (`@graph`, arrays, `@type` arrays), malformed input.
-6. Matching logic: ingredient normalization, plurals, synonyms, equipment and time filters.
+4. User-facing server logic: auth required, ownership enforced for writes, shared recipes readable (read-only) by accepted friends and rejected for everyone else, invalid input rejected, happy path.
+5. Webhook handlers (tested separately, no user session): invalid signature rejected, valid signature processed, invalid payload rejected, retries idempotent.
+6. Importer / parsers: real-world JSON-LD shapes (`@graph`, arrays, `@type` arrays), malformed input.
+7. Matching logic: ingredient normalization, plurals, synonyms, equipment and time filters.
 
 ## Rules
 
