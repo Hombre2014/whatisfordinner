@@ -167,7 +167,8 @@ erDiagram
   recipes ||--o{ recipe_equipment : needs
   equipment ||--o{ recipe_equipment : "needed by"
   recipes ||--o{ recipe_translations : "translated into"
-  recipes ||--o{ recipe_shares : "shared as"
+  recipes |o--o{ recipe_shares : "shared as (optional)"
+  recipe_shares |o--o{ recipes : "copied into"
   users ||--o{ friendships : "requests or receives"
   users ||--o{ recipe_shares : "sends or receives"
   recipes }o--o| recipes : "derived from"
@@ -194,7 +195,7 @@ erDiagram
 `id`, `user_id`, `location` (`fridge`, `pantry` or `freezer`), `ingredient_id` (nullable until matched), `name` (as entered), `quantity`, `unit`, `expires_on`, `barcode`.
 
 **`recipes`** — one row per recipe in a user's library.
-`id`, `user_id`, `data jsonb` (the full schema.org `Recipe`, stored as-is), plus extracted columns for lists and filters: `name`, `language`, `source_url`, `origin` (`own`, `web` or `api`), `favorite`, `image_url`, `image_public_id` (Cloudinary), `prep_minutes`, `cook_minutes`, `total_minutes`, `derived_from_recipe_id` (nullable), timestamps.
+`id`, `user_id`, `data jsonb` (the full schema.org `Recipe`, stored as-is), plus extracted columns for lists and filters: `name`, `language`, `source_url`, `origin` (`own`, `web` or `api`), `favorite`, `image_url`, `image_public_id` (Cloudinary), `prep_minutes`, `cook_minutes`, `total_minutes`, `derived_from_recipe_id` (nullable, `ON DELETE SET NULL`), `derived_from_share_id` (nullable, FK to `recipe_shares`, `ON DELETE SET NULL`), timestamps. The two `derived_from_*` columns live on the **recipient's own copy**, so recording where a copy came from only ever writes to a row the recipient owns.
 Constraint: unique `(user_id, source_url)` where `source_url` is not null, so the same URL is detected as a duplicate per user.
 Nutrition is stored in `data.nutrition` (`NutritionInformation`).
 
@@ -207,7 +208,7 @@ Nutrition is stored in `data.nutrition` (`NutritionInformation`).
 
 **`friendships`** — `id`, `requester_id`, `addressee_id`, `status` (`pending`, `accepted`, `rejected`), timestamps. Unique per user pair (in either direction).
 
-**`recipe_shares`** — `id`, `recipe_id`, `from_user_id`, `to_user_id`, `snapshot jsonb` (the recipe as it was when shared), `saved_recipe_id` (nullable; set when the recipient makes their own copy), `created_at`.
+**`recipe_shares`** — `id`, `recipe_id` (**nullable**, FK to `recipes`, `ON DELETE SET NULL`), `from_user_id`, `to_user_id`, `snapshot jsonb` (the recipe as it was when shared, including its images and attribution), `created_at`. A share is written only by the sender (created or revoked); the recipient never writes to it. Because `recipe_id` is optional and the snapshot is self-contained, a share survives deletion of the original recipe: Anna deleting her recipe sets `recipe_id` to null and Boris can still view the snapshot and save a copy. Deleting a share (revoking it) does not delete copies already made.
 
 **`api_cache`** — `provider`, `cache_key`, `response jsonb`, `fetched_at`, `expires_at`. Protects free-tier quotas and respects provider caching terms.
 
@@ -227,7 +228,7 @@ Clerk handles sign-up and sign-in (email and password, magic link or code, socia
 - The proxy alone is never trusted; authentication is checked again in each handler.
 - **Ownership authorizes writes.** Every query is scoped by the current user's id; a user id from the client is never trusted.
 - **Shared recipes are read-only.** A share gives access to a snapshot. It never authorizes a write to the original or to the share record.
-- **Copy on edit.** If a recipient wants to change a shared recipe, the app creates a new `recipes` row owned by the recipient with `derived_from_recipe_id` set, then edits that copy.
+- **Copy on edit.** If a recipient wants to change a shared recipe, the app creates a new `recipes` row owned by the recipient with `derived_from_recipe_id` and `derived_from_share_id` set on the copy, then edits that copy. The share record itself is never updated.
 
 ### 7.3 Webhooks
 
@@ -279,8 +280,8 @@ The canonical dictionary starts small (common ingredients, English and Bulgarian
 1. Anna sends a friend request; Boris accepts or rejects it (`friendships.status`).
 2. Anna shares a recipe with an accepted friend: a `recipe_shares` row stores a **snapshot** of the recipe at that moment.
 3. Boris views the snapshot read-only.
-4. When Boris saves or edits, a new `recipes` row is created for Boris with `derived_from_recipe_id` pointing at Anna's recipe, and `recipe_shares.saved_recipe_id` is set. Boris edits only his copy.
-5. Later edits or deletion of Anna's original do not change Boris's copy or the snapshot. A "the original was updated" notice is a possible later feature.
+4. When Boris saves or edits, a new `recipes` row is created for Boris with `derived_from_recipe_id` pointing at Anna's recipe and `derived_from_share_id` pointing at the share. These are stored on Boris's copy; `recipe_shares` is not modified. To find out whether Boris already saved a share, query his own recipes by `derived_from_share_id`. Boris edits only his copy.
+5. Later edits or deletion of Anna's original do not change Boris's copy or the snapshot. If the original is deleted, the share stays (`recipe_id` becomes null) and the snapshot remains viewable; the "Based on Anna's recipe" link on Boris's copy falls back to plain attribution text. A "the original was updated" notice is a possible later feature.
 
 ### 8.5 Translation
 

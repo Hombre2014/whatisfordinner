@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `AGENTS.md` now requires documentation to be updated in the same change whenever the app changes.
 - The definition of done in the development plan now limits the authentication requirement to user-facing handlers and states the webhook exception (signature verification).
 - Testing skill and tests agent now cover shared-recipe reads (allowed for accepted friends, read-only) and test webhook handlers separately from user-session handlers (signature rejection, valid-signature processing, idempotent retries).
+- Sharing data model: the copy link (`derived_from_recipe_id`, `derived_from_share_id`) is stored on the recipient's own copy instead of on the share record, and `recipe_shares.recipe_id` is nullable (`ON DELETE SET NULL`) so a share and its snapshot outlive the original recipe.
 - Authorization rules now say shared recipes are read-only: a share never authorizes a write, and edits create or modify the recipient's own copy.
 - All text now uses American English spelling (`color`, `organize`, `authorize`), and the rule is recorded in `AGENTS.md`.
 - Route and security rules now exempt webhook handlers from user-session authentication and require signature verification before processing.

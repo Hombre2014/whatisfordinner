@@ -20,7 +20,7 @@ applyTo: 'lib/db/**,drizzle/**,prisma/**,**/*schema*.ts'
 - **Parsed ingredients** live in a separate table (`recipe_ingredients`: original text, canonical ingredient, quantity, unit). Pantry matching uses the canonical ingredient, never free text.
 - A **canonical `ingredients` dictionary** with names per locale (`en`, `bg`) makes matching language-independent.
 - Per-user data: users (mirror of Clerk id), profile (all fields optional), kitchen equipment, fridge items, pantry items, recipes, friendships (pending/accepted/rejected), shares.
-- **Sharing = copy on edit.** A share stores a snapshot of the recipe at share time; the recipient's save/edit creates their own recipe with `derived_from` pointing at the original. The original is never modified by recipients.
+- **Sharing = copy on edit.** A share stores a snapshot of the recipe at share time; the recipient's save/edit creates their own recipe, and the link back (`derived_from_recipe_id`, `derived_from_share_id`) is stored **on that copy**, never on the share record. `recipe_shares.recipe_id` is nullable (`ON DELETE SET NULL`) so a share and its snapshot outlive the original. The original and the share record are never modified by recipients.
 - **Translations** are stored per recipe and language (`recipe_translations`), generated on demand and cached; the original is never overwritten.
 - Nutrition is stored in the schema.org `nutrition` field.
 
