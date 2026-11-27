@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changelog sub-headings are unique across the document (`Added in 0.0.2`, `Fixed in 0.0.3`, ...).
 - Release procedure in the git-operator agent now pushes the release branch together with the tag.
 - Agents must update this changelog whenever a change that matters is made.
+- Code Spell Checker ignores Cyrillic text for now (`cSpell.ignoreRegExpList` in `.vscode/settings.json`); the Bulgarian dictionary is scheduled for milestone M2 in the development plan.
 - `AGENTS.md` now requires documentation to be updated in the same change whenever the app changes.
 - Authorization rules now say shared recipes are read-only: a share never authorizes a write, and edits create or modify the recipient's own copy.
 - All text now uses American English spelling (`color`, `organize`, `authorize`), and the rule is recorded in `AGENTS.md`.
