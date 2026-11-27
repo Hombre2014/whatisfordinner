@@ -1,3 +1,18 @@
 {
-  "cSpell.words": ["whatisfordinner"]
+  "cSpell.ignoreRegExpList": ["/[\\u0400-\\u04FF]+/g"],
+  "cSpell.words": [
+    "carb",
+    "Edamam",
+    "intolerances",
+    "moodboard",
+    "Nutri",
+    "pescatarian",
+    "Spoonacular",
+    "THEMEALDB",
+    "timestamptz",
+    "UNPOOLED",
+    "whatisfordinner",
+    "whatsfordinner",
+    "Whiskit"
+  ]
 }
