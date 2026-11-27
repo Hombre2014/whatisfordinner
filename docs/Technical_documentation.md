@@ -114,7 +114,7 @@ Before finishing a change: `pnpm typecheck && pnpm lint && pnpm test:run`.
 
 ### 4.3 Versioning and changelog
 
-[Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Sub-headings are unique per version (`Added in 0.0.2`). The version stays the same until a branch is merged; then the version in `docs/CHANGELOG.md` and `package.json` is stepped up together, and the release is tagged `vx.y.z`. Pushing a release pushes the branch and the tag.
+[Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Sub-headings are unique per version (`Added in 0.0.2`). The version stays the same until a branch is merged; then the version in `docs/CHANGELOG.md` and `package.json` is stepped up together, and the release is tagged with an annotated tag `vx.y.z` (`git tag -a`). Pushing a release pushes the branch and the tag explicitly (`git push origin <branch> vx.y.z`), because `--follow-tags` skips lightweight tags.
 
 ### 4.4 Environment variables (Planned)
 
@@ -359,7 +359,7 @@ Summary of the rules in [security.instructions.md](../.github/instructions/secur
 
 - **Hosting:** Vercel Hobby for the app, Neon for Postgres, Cloudinary for images.
 - **Branches and review:** work on feature branches, review with CodeRabbit, merge to `main`.
-- **Release:** after a merge, the changelog version and `package.json` are stepped up together and the commit is tagged `vx.y.z`; the branch and tag are pushed together.
+- **Release:** after a merge, the changelog version and `package.json` are stepped up together and the commit gets an annotated tag `vx.y.z`; the branch and tag are pushed together explicitly.
 - **Migrations:** generated with `drizzle-kit generate`, committed, and applied before deploying code that needs them. Neon branches can be used to test migrations without touching real data.
 - **CI:** **Open.** A GitHub Actions workflow running `pnpm typecheck`, `pnpm lint` and `pnpm test:run` on every pull request is recommended.
 - **Monitoring:** Vercel logs at first; free-tier usage dashboards for each provider.

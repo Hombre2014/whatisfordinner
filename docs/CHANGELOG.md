@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@types/node` raised to v24 to satisfy Vitest's peer requirement.
 - Agent rules now allow committing `.env.example` (placeholders only) while still forbidding secret-bearing env files.
 - Changelog sub-headings are unique across the document (`Added in 0.0.2`, `Fixed in 0.0.3`, ...).
-- Release procedure in the git-operator agent now pushes the release branch together with the tag.
+- Release procedure in the git-operator agent now pushes the release branch together with the tag, using an annotated tag and an explicit `git push origin <branch> vx.y.z` (`--follow-tags` skips lightweight tags).
 - Agents must update this changelog whenever a change that matters is made.
 - Code Spell Checker ignores Cyrillic text for now (`cSpell.ignoreRegExpList` in `.vscode/settings.json`); the Bulgarian dictionary is scheduled for milestone M2 in the development plan.
 - `AGENTS.md` now requires documentation to be updated in the same change whenever the app changes.
