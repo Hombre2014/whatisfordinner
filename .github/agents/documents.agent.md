@@ -18,11 +18,11 @@ tools: ['vscode', 'read', 'edit', 'search']
 ## Changelog rules
 
 - Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/); versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Sections: Added, Changed, Deprecated, Removed, Fixed, Security.
-- **Unique headings:** every sub-heading names its version: `### Added in 0.0.1`, `### Fixed in 0.0.2` (never a bare `### Added`). Under unreleased work use `### Added in Unreleased`.
+- **Unique headings:** every sub-heading names its version: `### Added in 0.0.1`, `### Fixed in 0.0.2` (never a bare `### Added`).
 - **Keep it current:** whenever a file is created, updated or deleted in a way that matters (features, fixes, config, dependencies, docs, agent rules), add a changelog entry in the same change. Skip trivial edits (typos, whitespace, formatting-only).
-- Unreleased work goes under `## [Unreleased]`. A release gets `## [x.y.z] - YYYY-MM-DD`.
-- **Whenever a version is added or bumped in the changelog, update `package.json` `version` to the same value** and add the matching `[x.y.z]` link at the bottom (and update `[Unreleased]`).
-- Each deployment gets a git tag `vx.y.z`.
+- **There is no `Unreleased` section.** Every change goes under the version being worked on (`## [x.y.z] - YYYY-MM-DD`), and that version stays until its branch is merged; the next work starts the next version.
+- **Whenever a version is added or bumped in the changelog, update `package.json` `version` to the same value** and add the matching `[x.y.z]` compare link at the bottom.
+- Once the branch is pushed and merged, the version gets a git tag `vx.y.z` on GitHub. Remind the user to tag; never tag unasked.
 
 ## Rules
 
